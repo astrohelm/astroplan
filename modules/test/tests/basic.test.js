@@ -1,7 +1,7 @@
 'use strict';
 
 const [test, assert] = [require('node:test'), require('node:assert')];
-const Schema = require('../..');
+const Schema = require('../../..');
 
 test('[Metatest] Schema without errors & warnings', () => {
   const userSchema = new Schema({
@@ -10,10 +10,10 @@ test('[Metatest] Schema without errors & warnings', () => {
     name: { $type: 'set', items: ['string', '?string'] }, //? set tuple
     mask: { $type: 'array', items: 'string' }, //? array
     ip: {
-      $id: 'IpSchema',
+      id: 'IpSchema',
       $type: 'array',
-      $required: false,
-      $rules: [ip => ip[0] === '192'], //? custom rules
+      required: false,
+      rules: [ip => ip[0] === '192'], //? custom rules
       items: {
         $type: 'union',
         types: ['string', 'number', null],

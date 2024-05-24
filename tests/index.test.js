@@ -26,7 +26,7 @@ test('Custom prototypes with meta replacement for old ones', () => {
   const prototypeOnject = Object.fromEntries(prototypes.entries());
   const stringSchema = new Schema('string', { prototypes });
   const numberSchema = new Schema(
-    { $type: 'number', $meta: { desc: 'age' } },
+    { $type: 'number', meta: { desc: 'age' } },
     { prototypes: prototypeOnject },
   );
   assert.strictEqual(stringSchema.warnings.length + numberSchema.warnings.length, 0);
@@ -49,8 +49,8 @@ test('Forge', () => {
   const time = new Date();
   const plugin = schema => {
     const forge = schema.forge;
-    forge.set('after', { createdAt: time });
-    forge.assign('text', 'string', { pg: 'text' });
+    forge.attach('after', { createdAt: time });
+    forge.attach('text', 'string', { pg: 'text' });
   };
 
   const schema = new Schema('text', { modules: [...Schema.modules, ['test', plugin]] });
@@ -70,10 +70,10 @@ test('Example test', () => {
     phrase: (_, parent) => 'Hello ' + [...parent.name].join(' ') + ' !',
     mask: { $type: 'array', items: 'string' }, //? array
     ip: {
-      $meta: { '@description': 'User ip adress' },
+      meta: { '@description': 'User ip adress' },
       $type: 'array',
-      $required: false,
-      $rules: [ip => ip[0] === '192'], //? custom rules
+      required: false,
+      rules: [ip => ip[0] === '192'], //? custom rules
       items: {
         $type: 'union',
         types: ['string', '?number', 'null'],
@@ -89,7 +89,7 @@ test('Example test', () => {
   });
 
   const systemSchema = new Schema({
-    $meta: { '@name': 'Users', '@description': 'Array of users' },
+    meta: { '@name': 'Users', '@description': 'Array of users' },
     $type: 'array',
     items: userSchema,
   });

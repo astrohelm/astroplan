@@ -14,7 +14,5 @@
   "pluginSearchDirs": ["."],
   "quoteProps": "as-needed",
   "proseWrap": "always",
-  "overrides": [
-    { "files": ["*.json", ".prettierrc"], "options": { "parser": "json", "tabWidth": 2 } }
-  ]
+  "overrides": [{ "files": ["*.json", ".prettierrc"], "options": { "parser": "json", "tabWidth": 2 } }]
 }

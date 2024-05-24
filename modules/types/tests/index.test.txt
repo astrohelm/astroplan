@@ -2,7 +2,7 @@
 'use strict';
 
 const [test, assert] = [require('node:test'), require('node:assert')];
-const Schema = require('../../');
+const Schema = require('../../..');
 
 const generate = (type, name) => new Schema(type).dts(name);
 const base = 'type MetaForge = ';

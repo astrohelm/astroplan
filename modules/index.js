@@ -1,9 +1,7 @@
 'use strict';
 
-module.exports = new Map(
-  Object.entries({
-    handyman: require('./handyman'),
-    metatype: require('./types'),
-    metatest: require('./test'),
-  }),
-);
+module.exports = new Map([
+  ['handyman', require('./old-handyman')],
+  ['metatype', require('./types')],
+  ['metatest', require('./test')],
+]);
